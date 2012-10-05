@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -7,8 +8,12 @@ public class Assignment {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Task taskNoParams = new Task();
+		Task taskWithParams = new Task("Finish Java Assignment", new Date(112, 10, 8));
+		
+		System.out.println("Created the following Task objects:");
+		System.out.println(taskNoParams);
+		System.out.println(taskWithParams);
 	}
 
 	public static String getElement(String[] values, int index) {
@@ -20,7 +25,7 @@ public class Assignment {
 }
 
 
-public class Task {
+class Task {
 	public String Title;
 	public String Description;
 	private Date CreateDate;
