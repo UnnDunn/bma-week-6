@@ -1,3 +1,5 @@
+import java.util.Date;
+
 
 public class Assignment {
 
@@ -14,5 +16,24 @@ public class Assignment {
 			return null;
 		
 		return values[index];
+	}
+}
+
+
+public class Task {
+	public String Title;
+	public String Description;
+	private Date CreateDate;
+	public Date DueDate;
+	public Date CompletionDate;
+	
+	// accessors for private methods
+	public Date getCreateDate() {
+		return CreateDate;
+	}
+	
+	Task() {
+		Title = "Untitled Task";
+		CreateDate = new Date();
 	}
 }
