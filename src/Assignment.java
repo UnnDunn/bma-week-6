@@ -9,7 +9,7 @@ public class Assignment {
 	 */
 	public static void main(String[] args) {
 		Task taskNoParams = new Task();
-		Task taskWithParams = new Task("Finish Java Assignment", new Date(112, 10, 8));
+		Task taskWithParams = new Task("Finish Java Assignment", new Date(112, 9, 8));
 		
 		System.out.println("Created the following Task objects:");
 		System.out.println(taskNoParams);
@@ -46,5 +46,15 @@ class Task {
 		Title = title != null ? title : "Untitled task";
 		if(dueDate != null) DueDate = dueDate;
 		CreateDate = new Date();
+	}
+	
+	public String toString() {
+		String result = "Task: ";
+		result += "\"" + Title + "\", ";
+		result += "Created :" + CreateDate;
+		if(DueDate != null) result += ", Due: " + DueDate;
+		if(CompletionDate != null) result += ", Completed: " + CompletionDate;
+		
+		return result;
 	}
 }
