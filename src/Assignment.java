@@ -9,4 +9,10 @@ public class Assignment {
 
 	}
 
+	public static String getElement(String[] values, int index) {
+		if(index > values.length || index < 0)
+			return null;
+		
+		return values[index];
+	}
 }
