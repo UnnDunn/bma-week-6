@@ -36,4 +36,10 @@ public class Task {
 		Title = "Untitled Task";
 		CreateDate = new Date();
 	}
+	
+	Task(String title, Date dueDate) {
+		Title = title != null ? title : "Untitled task";
+		if(dueDate != null) DueDate = dueDate;
+		CreateDate = new Date();
+	}
 }
