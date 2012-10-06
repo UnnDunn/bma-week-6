@@ -47,6 +47,13 @@ public class Assignment {
 		
 		return values[index];
 	}
+	
+	public static void ShowHeading(String prompt) {
+		String hrule = "";
+		for(int i = 0; i < prompt.length; i++) hrule += "=";
+		
+		
+	}
 }
 
 
