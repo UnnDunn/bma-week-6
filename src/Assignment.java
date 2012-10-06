@@ -1,24 +1,22 @@
 import java.util.Date;
 import java.util.List;
 
-
 public class Assignment {
-
 	public static List<Task> AllTasks;
+
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		AllTasks = new List<Task>();
-		
 		AllTasks.add(new Task());
 		AllTasks.add(new Task("Finish Java Assignment", new Date(112, 9, 8)));
 		
 		ListTasks();
 	}
 	
-	public static void ListTasks() {
+	public void ListTasks() {
 		if(AllTasks.isEmpty()) {
 			System.out.println("There are no tasks in the list");
 			return;
