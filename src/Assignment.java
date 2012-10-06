@@ -4,21 +4,21 @@ import java.util.List;
 
 public class Assignment {
 
-	public List<Task> AllTasks;
+	public static List<Task> AllTasks;
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Task taskNoParams = new Task();
-		Task taskWithParams = new Task("Finish Java Assignment", new Date(112, 9, 8));
+		AllTasks = new List<Task>();
 		
-		System.out.println("Created the following Task objects:");
-		System.out.println(taskNoParams);
-		System.out.println(taskWithParams);
+		AllTasks.add(new Task());
+		AllTasks.add(new Task("Finish Java Assignment", new Date(112, 9, 8)));
+		
+		ListTasks();
 	}
 	
-	public void ListTasks() {
+	public static void ListTasks() {
 		if(AllTasks.isEmpty()) {
 			System.out.println("There are no tasks in the list");
 			return;
