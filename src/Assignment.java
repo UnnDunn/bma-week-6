@@ -1,9 +1,11 @@
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class Assignment {
 
+	public List<Task> AllTasks;
+	
 	/**
 	 * @param args
 	 */
@@ -14,6 +16,29 @@ public class Assignment {
 		System.out.println("Created the following Task objects:");
 		System.out.println(taskNoParams);
 		System.out.println(taskWithParams);
+	}
+	
+	public void ListTasks() {
+		if(AllTasks.isEmpty()) {
+			System.out.println("There are no tasks in the list");
+			return;
+		}
+		
+		System.out.println("All Tasks:\n==========");
+		
+		int i = 1;
+		for (Task task : AllTasks) {
+			System.out.println(i + ": " + task + "\n---");
+			i++;
+		}
+	}
+	
+	public void DeleteTask(int index, boolean confirmed) {
+		
+	}
+	
+	public void CreateTask() {
+		
 	}
 
 	public static String getElement(String[] values, int index) {
@@ -30,7 +55,7 @@ class Task {
 	public String Description;
 	private Date CreateDate;
 	public Date DueDate;
-	public Date CompletionDate;
+	private Date CompletionDate;
 	
 	// accessors for private methods
 	public Date getCreateDate() {
@@ -46,6 +71,11 @@ class Task {
 		Title = title != null ? title : "Untitled task";
 		if(dueDate != null) DueDate = dueDate;
 		CreateDate = new Date();
+	}
+	
+	public void CompleteTask() {
+		// set completion date for task
+		CompletionDate = new Date();
 	}
 	
 	public String toString() {
