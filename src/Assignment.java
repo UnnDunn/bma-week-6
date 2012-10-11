@@ -62,10 +62,35 @@ class Task {
 	private Date DueDate;
 	private Date CompletionDate;
 	
-	// accessors for private methods
+	// Accessors
+	public String getTitle() {
+		return this.Title;
+	}
+	
+	public String getDescription() {
+		return Description;
+	}
+	
+	public void setDescription(String description) {
+		Description = description;
+	}
+	
+	public Date getDueDate() {
+		return DueDate;
+	}
+	
+	public Date getCompletionDate() {
+		return CompletionDate;
+	}
+	
+	public Boolean isComplete() {
+		return CompletionDate != null;
+	}
+	
 	public Date getCreateDate() {
 		return CreateDate;
 	}
+	// End Accessors
 	
 	Task() {
 		Title = "Untitled Task";
