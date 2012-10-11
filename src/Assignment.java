@@ -56,10 +56,10 @@ public class Assignment {
 
 
 class Task {
-	public String Title;
-	public String Description;
+	private String Title;
+	private String Description;
 	private Date CreateDate;
-	public Date DueDate;
+	private Date DueDate;
 	private Date CompletionDate;
 	
 	// accessors for private methods
