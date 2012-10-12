@@ -52,11 +52,10 @@ public class Assignment {
 		return values[index];
 	}
 	
-	public static void ShowHeading(String prompt) {
+	public static String ShowHeading(String prompt) {
 		String hrule = "";
-		for(int i = 0; i < prompt.length; i++) hrule += "=";
-		
-		
+		for(int i = 0; i < prompt.length(); i++) hrule += "=";
+		return prompt + "\n" + hrule;
 	}
 }
 
@@ -180,29 +179,48 @@ abstract class RepeatingTask extends Task
 	public String toString() {
 		String result = "Repeating ";
 		result += super.toString();
+		result += DueDatesString(false);
 		
-		// fetch upcoming dates
-		List<Date> upcomingDates = new ArrayList<Date>();
-		Date currentDate = new Date();
+		return result;
+	}
+	
+	protected List<Date> getDueDatesAfter(Date minDate)
+	{
+		List<Date> resultDates = new ArrayList<Date>();
 		for(Date date : DueDates) {
-			if(date.compareTo(currentDate) > 0) {
-				upcomingDates.add(date);
+			if(date.compareTo(minDate) > 0) {
+				resultDates.add(date);
 			}
 		}
 		
-		// add upcoming dates to string if necessary
-		if(upcomingDates.isEmpty()) {
-			result += "\nNo upcoming due dates for this task.\n";
+		return resultDates;
+	}
+	
+	protected String DueDatesString(Boolean showUpcomingOnly) {
+		showUpcomingOnly = showUpcomingOnly != null ? showUpcomingOnly : false;
+		
+		List<Date> resultDates = new ArrayList<Date>();
+		if(showUpcomingOnly) {
+			resultDates = getDueDatesAfter(new Date());
+		}
+		
+		String result = null;
+		// add due dates to string if necessary
+		if(resultDates.isEmpty()) {
+			result += showUpcomingOnly ? "\nNo upcoming due dates for this task.\n" : "\nNo due dates for this task.\n";
 		} else {
-			result += "\nUpcoming due dates:\n";
-			for(Date date : upcomingDates) {
+			result += showUpcomingOnly ? "\nUpcoming Due Dates:\n" : "\nDue dates:\n";
+			for(Date date : resultDates) {
 				result += "\t" + date + "\n";
 			}
 			
-			result += String.format("%s upcoming dates (out of %s total dates.)\n", upcomingDates.size(), DueDates.size());
+			result += showUpcomingOnly
+					? String.format("%s upcoming dates (out of %s total dates.)\n", resultDates.size(), DueDates.size())
+					: String.format("%s total dates.", resultDates.size());
 		}
 		
 		return result;
+
 	}
 }
 
