@@ -125,7 +125,7 @@ abstract class Task {
 	}
 }
 
-class RepeatingTask extends Task
+abstract class RepeatingTask extends Task
 {
 	protected List<Date> DueDates;
 	
@@ -148,6 +148,51 @@ class RepeatingTask extends Task
 		if (result == null) result = DueDates.get(DueDates.size() - 1);
 		return result;
 	}
+	
+	public List<Date> listDueDates() {
+		return DueDates;
+	}
+	
+	public void SetDueDate(Date dueDate) {
+		if(!DueDates.contains(dueDate)) DueDates.add(dueDate);
+	}
+	
+	public void ResetDueDates() {
+		DueDates.clear();
+	}
+	
+	public String toString() {
+		String result = "Repeating ";
+		result += super.toString();
+		
+		// fetch upcoming dates
+		List<Date> upcomingDates = new ArrayList<Date>();
+		Date currentDate = new Date();
+		for(Date date : DueDates) {
+			if(date.compareTo(currentDate) > 0) {
+				upcomingDates.add(date);
+			}
+		}
+		
+		// add upcoming dates to string if necessary
+		if(upcomingDates.isEmpty()) {
+			result += "\nNo upcoming due dates for this task.\n";
+		} else {
+			result += "\nUpcoming due dates:\n";
+			for(Date date : upcomingDates) {
+				result += "\t" + date + "\n";
+			}
+			
+			result += String.format("%s upcoming dates (out of %s total dates.)\n", upcomingDates.size(), DueDates.size());
+		}
+		
+		return result;
+	}
+}
+
+class DailyTask extends RepeatingTask
+{
+	private Date TimeOfDay;
 	
 	
 }
