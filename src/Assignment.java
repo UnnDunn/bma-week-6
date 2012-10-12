@@ -115,13 +115,29 @@ abstract class Task {
 	}
 	
 	public String toString() {
-		String result = "Task: ";
-		result += "\"" + Title + "\", ";
-		result += "Created :" + CreateDate;
-		if(DueDate != null) result += ", Due: " + DueDate;
-		if(CompletionDate != null) result += ", Completed: " + CompletionDate;
+		String result = "Task: "
+				+ TitleString() 
+				+ ", " + CreatedDateString()
+				+ ", " + DueDateString()
+				+ ", " + CompletionDateString();
 		
 		return result;
+	}
+	
+	protected String CreatedDateString() {
+		return "Created: " + CreateDate;
+	}
+	
+	protected String TitleString() {
+		return "\"" + Title + "\"";
+	}
+	
+	protected String DueDateString() {
+		return DueDate == null ? "No Due Date" : "Due: " + DueDate;
+	}
+	
+	protected String CompletionDateString() {
+		return CompletionDate == null ? "No Completion Date" : "Completed: " + CompletionDate;
 	}
 }
 
