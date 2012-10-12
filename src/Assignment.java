@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -9,9 +12,12 @@ public class Assignment {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		AllTasks = new List<Task>();
+		AllTasks = new ArrayList<Task>();
 		AllTasks.add(new Task());
-		AllTasks.add(new Task("Finish Java Assignment", new Date(112, 9, 8)));
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(2012, 10, 8);
+		AllTasks.add(new Task("Finish Java Assignment", cal.getTime()));
 		
 		ListTasks();
 	}
@@ -55,7 +61,7 @@ public class Assignment {
 }
 
 
-class Task {
+abstract class Task {
 	private String Title;
 	private String Description;
 	private Date CreateDate;
@@ -117,4 +123,31 @@ class Task {
 		
 		return result;
 	}
+}
+
+class RepeatingTask extends Task
+{
+	protected List<Date> DueDates;
+	
+	public Date getDueDate() {
+		if (DueDates.isEmpty()) return null;
+		
+		Date result = null;
+		
+		Collections.sort(DueDates);
+		
+		Date currentDate = new Date();
+		
+		for(Date testDate : DueDates){
+			if(testDate.compareTo(currentDate) > 1) {
+				result = testDate;
+				break;
+			}
+		}
+		
+		if (result == null) result = DueDates.get(DueDates.size() - 1);
+		return result;
+	}
+	
+	
 }
