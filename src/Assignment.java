@@ -72,6 +72,10 @@ abstract class Task {
 		return this.Title;
 	}
 	
+	public void setTitle(String title) {
+		Title = title;
+	}
+	
 	public String getDescription() {
 		return Description;
 	}
@@ -100,6 +104,11 @@ abstract class Task {
 	Task() {
 		Title = "Untitled Task";
 		CreateDate = new Date();
+	}
+	
+	Task(String title)
+	{
+		setTitle(title);
 	}
 	
 	Task(String title, Date dueDate) {
@@ -137,6 +146,13 @@ abstract class Task {
 	
 	protected String CompletionDateString() {
 		return CompletionDate == null ? "No Completion Date" : "Completed: " + CompletionDate;
+	}
+}
+
+class OneTimeTask extends Task
+{
+	public OneTimeTask(String title) {
+		
 	}
 }
 
