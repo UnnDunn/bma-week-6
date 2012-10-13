@@ -13,22 +13,22 @@ public class Assignment {
 	 */
 	public static void main(String[] args) {
 		AllTasks = new ArrayList<Task>();
-		AllTasks.add(new Task());
+		AllTasks.add(new OneTimeTask());
 		
 		Calendar cal = Calendar.getInstance();
 		cal.set(2012, 10, 8);
-		AllTasks.add(new Task("Finish Java Assignment", cal.getTime()));
+		AllTasks.add(new OneTimeTask("Finish Java Assignment", cal.getTime()));
 		
 		ListTasks();
 	}
 	
-	public void ListTasks() {
+	public static void ListTasks() {
 		if(AllTasks.isEmpty()) {
 			System.out.println("There are no tasks in the list");
 			return;
 		}
 		
-		System.out.println("All Tasks:\n==========");
+		System.out.println(ShowHeading("All Tasks"));
 		
 		int i = 1;
 		for (Task task : AllTasks) {
@@ -151,8 +151,16 @@ abstract class Task {
 
 class OneTimeTask extends Task
 {
+	public OneTimeTask() {
+		super();
+	}
+	
 	public OneTimeTask(String title) {
-		
+		super(title);
+	}
+
+	public OneTimeTask(String title, Date dueDate) {
+		super(title, dueDate);
 	}
 }
 
